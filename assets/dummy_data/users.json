@@ -1,0 +1,32 @@
+[
+  {
+    "username": {
+      "firstName": "Obada",
+      "lastName": "Daghlas",
+      "gender": "Male",
+      "age": 30,
+      "location": "Palestine",
+      "profileImage": "https://avatars.githubusercontent.com/u/131127605?s=400&u=c941ad85c2612a76a14bb628bc309fd2a5ea37c2&v=4",
+      "email": "animayoloteer@mail.com",
+      "jobTitle": "Front-end Developer",
+      "company": "Exalt Technologies",
+      "education": [
+        {
+          "degree": "Bachelor of Science in Computer Science",
+          "institution": "University of XYZ",
+          "graduationYear": 2016
+        }
+      ],
+      "certifications": [
+        "Data Analyst Nanodegree (Udacity)",
+        "Full Stack Web Developer"
+      ],
+      "skills": [
+        { "name": "HTML", "proficiency": "Expert" },
+        { "name": "CSS", "proficiency": "Advanced" },
+        { "name": "JavaScript", "proficiency": "Expert" }
+      ],
+      "hobbies": ["Valorant", "CS2", "Problem Solving"]
+    }
+  }
+]
