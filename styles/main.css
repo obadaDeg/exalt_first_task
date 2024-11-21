@@ -1,7 +1,7 @@
 :root {
   --primary-color: #f6f6f6;
   --secondary-color: #1b4183;
-  --accent-color: #ebebeb;
+  --accent-color: #dddddd;
   --success-color: #28a745;
   --call-to-action: #c2d2ec;
   --active-color: #eeeff3;
@@ -136,7 +136,71 @@ body::before {
 }
 
 .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
 }
+
+.contact-form:has(input[required]) label::after {
+  content: "*";
+  color: var(--danger-color);
+  padding-left: 1%;
+  vertical-align: -25%;
+}
+
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 1em 1em;
+  font-size: calc(var(--font-size) * 0.95);
+  border: var(--border-width) solid var(--accent-color);
+  border-radius: 0.5em;
+}
+
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border: var(--border-width) solid var(--secondary-color);
+    color: var(--primary-text-color);
+    caret-color: var(--secondary-color);
+}
+
+.contact-form textarea {
+  resize: none;
+  height: 10em;
+  overflow-y: auto;
+}
+
+.action-button {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    padding: .5em 1em;
+    border: none;
+    border-radius: .5em;
+}
+
+.action-button:hover {
+    background-color: var(--active-color);
+    color: var(--primary-text-color);
+}
+
+.action-button:active {
+    color: var(--warning-color);
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.error {
+    margin: 0;
+    font-size: calc(var(--font-size) * .75);
+    color: var(--danger-color);
+}
+
 
 @media screen and (max-width: 480px) {
   .skills ul,
