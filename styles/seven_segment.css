@@ -18,38 +18,8 @@
     margin: 0;
 }
 
-.counter {
+#counter {
+    max-width: 100%;
+    height: 100%;
     background-color: var(--bg-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* width: fit-content; */
-    width: 100%;
-    position: relative;
-    height: 25vh;
-}
-
-
-.slot {
-    background-color: red;
-    display: flex;
-}
-
-.number-part {
-    display: grid;
-    grid-template-columns: 5% 90% 5%;
-}
-
-.diode {
-    background-color: var(--segment-color);
-}
-
-
-.horizental {
-    width: 100%;
-    height: 12.5vh;
-}
-
-.vertical {
-    
 }

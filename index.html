@@ -71,34 +71,22 @@
             ></textarea>
             <p class="error">asdf</p>
           </div>
-          <button type="submit" class="action-button">Send</button>
+          <button type="submit" class="action-button" disabled>Send</button>
         </form>
       </section>
       <section class="content-card seven-segment">
         <h3>7-Segment</h3>
-        <div class="counter">
-          <div class="slot">
-            <div class="number-part">
-              <div class="diode horizental"></div>
-              <div class="diode mid"></div>
-              <div class="diode horizental"></div>
-              <div class="diode vertical left"></div>
-              <div class="diode vertical left"></div>
-              <div class="diode vertical right"></div>
-              <div class="diode vertical right"></div>
-            </div>
-            <div class="diode dot"></div>
-          </div>
-        </div>
+        <canvas id="counter">
+        </canvas>
         <form action="#" class="segment-input">
           <label for="">Enter a number:</label>
           <input type="number" />
-          <button type="submit" class="action-button">Apply</button>
+          <button type="submit" class="action-button" disabled>Apply</button>
         </form>
       </section>
     </main>
     <footer>
-      <p class="current-datetime">Timestamp</p>
+      <p class="current-datetime"></p>
       <p>&copy; 2024</p>
     </footer>
   </body>

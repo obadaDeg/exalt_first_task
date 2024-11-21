@@ -184,6 +184,16 @@ body::before {
   padding: 0.5em 1em;
   border: none;
   border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.action-button:disabled,
+.action-button[disabled],
+.action-button:disabled:hover,
+.action-button[disabled]:hover {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
 }
 
 .action-button:hover {
@@ -207,6 +217,10 @@ body::before {
   color: var(--danger-color);
 }
 
+footer {
+  text-align: center;
+}
+
 @media screen and (max-width: 480px) {
   .skills ul,
   .hobbies ul {
@@ -220,3 +234,21 @@ body::before {
     text-align: center;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+      --primary-color: #242424;
+      --secondary-color: #89b3f5;
+      --accent-color: #888888;
+      --success-color: #4caf50;
+      --call-to-action: #5a7dbc;
+      --active-color: #4a4a4a;
+      --info-color: #64c0d8;
+      --warning-color: #ffc957;
+      --danger-color: #e57373;
+      --light-color: #3a3a3a;
+  
+      --primary-text-color: #f6f6f6;
+    }
+  }
+  
