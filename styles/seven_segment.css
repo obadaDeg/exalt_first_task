@@ -1,0 +1,55 @@
+:root {
+    --bg-color: rgb(43, 43, 43);
+    --segment-color: rgba(214, 19, 19);
+    --disabled-segment: rgba(214, 19, 19, 0.363);
+    
+}
+
+.seven-segment {
+    font-family: var(--font-family);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    justify-content: center;
+}
+
+.seven-segment h3{
+    align-self: flex-start;
+    margin: 0;
+}
+
+.counter {
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: fit-content; */
+    width: 100%;
+    position: relative;
+    height: 25vh;
+}
+
+
+.slot {
+    background-color: red;
+    display: flex;
+}
+
+.number-part {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+}
+
+.diode {
+    background-color: var(--segment-color);
+}
+
+
+.horizental {
+    width: 100%;
+    height: 12.5vh;
+}
+
+.vertical {
+    
+}

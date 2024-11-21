@@ -118,6 +118,8 @@ body::before {
 .hobbies ul {
   display: inline-flex;
   list-style: none;
+  margin: 0;
+  padding: 0;
   gap: 0.5em;
   flex-wrap: wrap;
 }
@@ -135,14 +137,16 @@ body::before {
   border-radius: 20em;
 }
 
-.contact-form {
+.contact-form,
+.segment-input {
   display: flex;
   flex-direction: column;
   gap: 1em;
   width: 100%;
 }
 
-.contact-form:has(input[required]) label::after {
+.contact-form:has(input[required]) label::after,
+.segment-input:has(input) label::after {
   content: "*";
   color: var(--danger-color);
   padding-left: 1%;
@@ -150,7 +154,8 @@ body::before {
 }
 
 .contact-form input[type="email"],
-.contact-form textarea {
+.contact-form textarea,
+.segment-input input {
   width: 100%;
   padding: 1em 1em;
   font-size: calc(var(--font-size) * 0.95);
@@ -159,11 +164,12 @@ body::before {
 }
 
 .contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border: var(--border-width) solid var(--secondary-color);
-    color: var(--primary-text-color);
-    caret-color: var(--secondary-color);
+.contact-form textarea:focus,
+.segment-input input:focus {
+  outline: none;
+  border: var(--border-width) solid var(--secondary-color);
+  color: var(--primary-text-color);
+  caret-color: var(--secondary-color);
 }
 
 .contact-form textarea {
@@ -173,34 +179,33 @@ body::before {
 }
 
 .action-button {
-    background-color: var(--secondary-color);
-    color: var(--accent-color);
-    padding: .5em 1em;
-    border: none;
-    border-radius: .5em;
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.5em;
 }
 
 .action-button:hover {
-    background-color: var(--active-color);
-    color: var(--primary-text-color);
+  background-color: var(--active-color);
+  color: var(--primary-text-color);
 }
 
 .action-button:active {
-    color: var(--warning-color);
+  color: var(--warning-color);
 }
 
 .input {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .error {
-    margin: 0;
-    font-size: calc(var(--font-size) * .75);
-    color: var(--danger-color);
+  margin: 0;
+  font-size: calc(var(--font-size) * 0.75);
+  color: var(--danger-color);
 }
-
 
 @media screen and (max-width: 480px) {
   .skills ul,
