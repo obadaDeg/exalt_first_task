@@ -1,7 +1,7 @@
-const canvas = document.getElementById("counter");
+export default class SevenSegment {
+    constructor(ctx) {
+        this.ctx = ctx;
+    }
 
-if (canvas.getContext) {
-  const ctx = canvas.getContext("2d");
-} else {
-  console.log("context is not supported");
+    
 }
