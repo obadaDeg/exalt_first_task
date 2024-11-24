@@ -235,20 +235,20 @@ footer {
   }
 }
 
+
 @media (prefers-color-scheme: dark) {
-    :root {
-      --primary-color: #242424;
-      --secondary-color: #89b3f5;
-      --accent-color: #888888;
-      --success-color: #4caf50;
-      --call-to-action: #5a7dbc;
-      --active-color: #4a4a4a;
-      --info-color: #64c0d8;
-      --warning-color: #ffc957;
-      --danger-color: #e57373;
-      --light-color: #3a3a3a;
-  
-      --primary-text-color: #f6f6f6;
-    }
+  :root {
+    --primary-color: #242424;
+    --secondary-color: #89b3f5;
+    --accent-color: #888888;
+    --success-color: #4caf50;
+    --call-to-action: #5a7dbc;
+    --active-color: #4a4a4a;
+    --info-color: #64c0d8;
+    --warning-color: #ffc957;
+    --danger-color: #e57373;
+    --light-color: #3a3a3a;
+
+    --primary-text-color: #f6f6f6;
   }
-  
+}

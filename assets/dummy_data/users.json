@@ -1,6 +1,7 @@
 [
   {
-    "username": {
+    "id": 1,
+    "userData": {
       "firstName": "Obada",
       "lastName": "Daghlas",
       "gender": "Male",
@@ -23,6 +24,23 @@
       ],
       "skills": [
         { "name": "HTML", "proficiency": "Expert" },
+        { "name": "CSS", "proficiency": "Advanced" },
+        { "name": "JavaScript", "proficiency": "Expert" }
+      ],
+      "hobbies": ["Valorant", "CS2", "Problem Solving"]
+    }
+  },
+  {
+    "id": 2,
+    "userData": {
+      "firstName": "Brody",
+      "lastName": "OP",
+      "gender": "Male",
+      "location": "The land of Dawn",
+      "profileImage": "C:\\Users\\Obada.Daghlas\\Desktop\\exalt_first_task\\assets\\images\brody.png",
+      "jobTitle": "Marksman",
+      "skills": [
+        { "name": "slow", "proficiency": "Expert" },
         { "name": "CSS", "proficiency": "Advanced" },
         { "name": "JavaScript", "proficiency": "Expert" }
       ],
