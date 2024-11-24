@@ -55,17 +55,23 @@ function createDetail(container, key, value) {
   const paragraphDetail = document.createElement("p");
   paragraphDetail.classList.add("details");
   paragraphDetail.textContent = `${key}: ${value}`;
-  console.log(paragraphDetail.textContent);
-  container.appendChild(paragraphDetail)
+  container.appendChild(paragraphDetail);
 }
 
-
+function createListItem(container, value) {
+  const listItem = document.createElement("li");
+  listItem.classList.add("list-content");
+  listItem.textContent = value;
+  container.appendChild(listItem);
+}
 
 // Fetching profile informaiton from the server
 window.addEventListener("load", async () => {
   const profileTitle = document.querySelector(".profile-header h2");
   const profileImg = document.querySelector(".profile-picture img");
   const profileDetails = document.querySelector(".about-me .details-container");
+  const profileSkillsSection = document.querySelector(".skills ul");
+  const profileHobbiesSection = document.querySelector(".content-card.hobbies ul");
   const profileData = (await getProfileInfo())["userData"];
   console.log(profileData);
 
@@ -73,6 +79,7 @@ window.addEventListener("load", async () => {
   profileImg.src =
     profileData.profileImage || "./assets/images/profile_image.png";
 
+  // About me Section
   const details = ((profileData) => {
     const modifiedVersion = {
       fullName: `${profileData.firstName} ${profileData.lastName}`,
@@ -87,10 +94,18 @@ window.addEventListener("load", async () => {
     return modifiedVersion;
   })(profileData);
 
-  console.log(details);
-
   Object.keys(details).forEach((key) => {
     createDetail(profileDetails, key, details[key]);
+  });
+
+  // Skills
+  profileData["skills"].forEach((element) => {
+    createListItem(profileSkillsSection, element["name"]);
+  });
+
+  // Hobbies
+  profileData["hobbies"].forEach((element) => {
+    createListItem(profileHobbiesSection, element);
   });
 });
 
