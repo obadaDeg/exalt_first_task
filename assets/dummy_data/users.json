@@ -14,13 +14,13 @@
       "education": [
         {
           "degree": "Bachelor of Science in Computer Science",
-          "institution": "University of XYZ",
-          "graduationYear": 2016
+          "institution": "University of Arab American University",
+          "graduationYear": 2025
         }
       ],
       "certifications": [
         "Data Analyst Nanodegree (Udacity)",
-        "Full Stack Web Developer"
+        "Front End Developer"
       ],
       "skills": [
         { "name": "HTML", "proficiency": "Expert" },
@@ -37,7 +37,7 @@
       "lastName": "OP",
       "gender": "Male",
       "location": "The land of Dawn",
-      "profileImage": "C:\\Users\\Obada.Daghlas\\Desktop\\exalt_first_task\\assets\\images\brody.png",
+      "profileImage": "https://i.pinimg.com/736x/67/d6/12/67d612bbede66fe1aca9d7c3920e31fb.jpg",
       "jobTitle": "Marksman",
       "skills": [
         { "name": "slow", "proficiency": "Expert" },

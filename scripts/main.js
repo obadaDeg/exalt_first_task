@@ -1,8 +1,8 @@
 // import SevenSegmentDisplay from "./SevenSegmentDisplay.js";
+import ProfileDetailsEnum from "./DetailsEnum.js";
 
 const footerDate = document.querySelector(".current-datetime");
 const action = document.querySelector(".action-button");
-const profileTitle = document.querySelector(".profile-header h2");
 const toggleTheme = document.querySelector(".toggle-theme");
 
 let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -42,12 +42,57 @@ async function getProfileInfo() {
       throw Error(`Response Status ${response.status}`);
     }
 
-    const profileData = await response.json();
-    console.log(profileData);
+    return await response.json();
   } catch (error) {
     console.log(error.message);
   }
 }
+
+function createDetail(container, key, value) {
+  key = key.replace(/([A-Z])/g, " $1");
+  key = key.charAt(0).toUpperCase() + key.slice(1);
+
+  const paragraphDetail = document.createElement("p");
+  paragraphDetail.classList.add("details");
+  paragraphDetail.textContent = `${key}: ${value}`;
+  console.log(paragraphDetail.textContent);
+  container.appendChild(paragraphDetail)
+}
+
+
+
+// Fetching profile informaiton from the server
+window.addEventListener("load", async () => {
+  const profileTitle = document.querySelector(".profile-header h2");
+  const profileImg = document.querySelector(".profile-picture img");
+  const profileDetails = document.querySelector(".about-me .details-container");
+  const profileData = (await getProfileInfo())["userData"];
+  console.log(profileData);
+
+  profileTitle.textContent = `Profile Page of ${profileData.firstName} ${profileData.lastName}`;
+  profileImg.src =
+    profileData.profileImage || "./assets/images/profile_image.png";
+
+  const details = ((profileData) => {
+    const modifiedVersion = {
+      fullName: `${profileData.firstName} ${profileData.lastName}`,
+    };
+
+    Object.keys(ProfileDetailsEnum).forEach((key) => {
+      if (profileData[ProfileDetailsEnum[key]] !== undefined) {
+        modifiedVersion[ProfileDetailsEnum[key]] =
+          profileData[ProfileDetailsEnum[key]];
+      }
+    });
+    return modifiedVersion;
+  })(profileData);
+
+  console.log(details);
+
+  Object.keys(details).forEach((key) => {
+    createDetail(profileDetails, key, details[key]);
+  });
+});
 
 // Dark Theme handling
 window.addEventListener("load", () => {
