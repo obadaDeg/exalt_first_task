@@ -1,64 +1,116 @@
-export default class FormValidator {
-  constructor(selector) {
-    this.form = document.querySelector(selector);
-    this.inputsHasErrors = new Set();
+// export default class FormValidator {
+//   constructor(selector) {
+//     this.form = document.querySelector(selector);
+//     this.inputsHasErrors = new Set();
 
-    this.form.addEventListener("submit", (e) => {
-      e.preventDefault();
+//     this.form.addEventListener("submit", (e) => {
+//       e.preventDefault();
+//       this.validateAllInputs();
+//       if (!this.hasErrors) {
+//         console.log("Form is valid and ready to submit!");
+//         this.form.submit();
+//       } else {
+//         console.log("Form has errors, submission blocked.");
+//       }
+//     });
 
-    //   const inputs = Array.from(this.form.querySelectorAll("input"));
-    //   inputs.forEach((input) => input.dispatchEvent(new Event("change")));
+//     this.form.addEventListener("input", () => {
+//       const requiredInputs = Array.from(
+//         this.form.querySelectorAll("input[required], textarea[required]")
+//       );
+//       const submitButton = this.form.querySelector(".action-button");
 
-    //   this.inputsHasErrors.add("for testing");
-      if (!this.hasErrors) {
-        this.form.submit();
-      }
-    });
+//       const allFilled = requiredInputs.every(
+//         (input) => input.value.trim() !== ""
+//       );
 
-    this.form.addEventListener("change", () => {
-      const requireInputFields = Array.from(
-        this.form.querySelectorAll("input[required]")
-      );
+//       allFilled
+//         ? submitButton.removeAttribute("disabled")
+//         : submitButton.setAttribute("disabled", "");
+//     });
+//   }
 
-      const submitButton = this.form.querySelector(".action-button");
+//   get hasErrors() {
+//     return this.inputsHasErrors.size > 0;
+//   }
 
-      requireInputFields.every((element) => {
-        if (element.value == "") return false;
+//   addInputValidation(selector, checkFunction) {
+//     const inputField = this.form.querySelector(selector);
+//     const errorElement = inputField?.closest(".input")?.querySelector(".error");
 
-        return true;
-      })
-        ? submitButton.removeAttribute("disabled")
-        : submitButton.setAttribute("disabled", "");
-    });
-  }
+//     const validateInput = () => {
+//       const { pass, error } = checkFunction(inputField.value, inputField);
 
-  get hasErrors() {
-    return this.inputsHasErrors.size > 0;
-  }
+//       if (!pass) {
+//         this.inputsHasErrors.add(inputField);
+//         errorElement.textContent = error;
+//       } else {
+//         this.inputsHasErrors.delete(inputField);
+//         errorElement.textContent = "";
+//       }
+//     };
 
-  addInputValidation(selector, checkFunction) {
-    const inputField = this.form.querySelector(selector);
-    const errorElement = inputField.closest(".input").querySelector(".error");
+//     inputField.addEventListener("input", validateInput);
 
-    const execute = (hideError) => {
-      const { pass, error } = checkFunction(inputField.value, inputField);
+//     validateInput();
+//   }
 
-      console.log(checkFunction);
-      console.log(pass, error);
-      
-      
-      if (!hideError) {
-        errorElement.textContent = error || "";
-      }
+//   validateAllInputs() {
+//     const inputs = Array.from(
+//       this.form.querySelectorAll("input[required], textarea[required]")
+//     );
+//     inputs.forEach((input) => {
+//       const event = new Event("input");
+//       input.dispatchEvent(event);
+//     });
+//   }
+// }
 
-      if (!pass) {
-        this.inputsHasErrors.add(inputField);
-      } else {
-        this.inputsHasErrors.delete(inputField);
-      }
-    };
+// for main
 
-    inputField.addEventListener("change", execute(false));
-    execute(true);
-  }
-}
+// function validateNumber(value, element) {
+//   if (isNaN(parseInt(value))) {
+//     console.log(parseInt(value));
+//     return { pass: true };
+//   }
+
+//   console.log(parseInt(value), "from me");
+
+//   return {
+//     pass: false,
+//     error: "Field must be a number",
+//   };
+// }
+
+// function validateNumber(value, element) {
+//   if (/^\d+$/g.test(value)) {
+//     return { pass: true };
+//   }
+//   console.log(/^\d+$/g.test(value), 'from regex');
+  
+//   return {
+//     pass: false,
+//     error: "Field must be a number",
+//   };
+// }
+
+
+// const contactFormValidator = new FormValidator(".contact-form");
+// const segmentFormValidator = new FormValidator(".segment-input");
+
+// function validateLength(value, inputField) {
+//   if (value.length === 0 || value.length > 5) {
+//     return {
+//       pass: false,
+//       error: "Username must be between 1 - 5 characters."
+//     };
+//   }
+
+//   return {
+//     pass: true
+//   };
+// }
+
+// contactFormValidator.addInputValidation('#email', validateLength)
+// // segmentFormValidator.addInputValidation("input", validateNumber);
+

@@ -1,10 +1,12 @@
-// import SevenSegmentDisplay from "./SevenSegmentDisplay.js";
+import SevenSegmentDisplay from "./SevenSegmentDisplay.js";
 import ProfileDetailsEnum from "./DetailsEnum.js";
-import FormValidator from "./FormValidator.js";
+// import FormValidator from "./FormValidator.js";
 
 const footerDate = document.querySelector(".current-datetime");
 const action = document.querySelector(".action-button");
 const toggleTheme = document.querySelector(".toggle-theme");
+const contactForm = document.querySelector(".contact-form");
+const segmentForm = document.querySelector(".segment-input");
 
 let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
 const theme = {
@@ -112,6 +114,8 @@ window.addEventListener("load", async () => {
   });
 });
 
+// Contact form validation
+
 // Dark Theme handling
 window.addEventListener("load", () => {
   let toggleThemeMessage = !isDarkMode ? "Dark Theme" : "Light Theme";
@@ -135,43 +139,36 @@ toggleTheme.addEventListener("click", () => {
   }
 });
 
+
+const displays = [];
+const canvas = document.getElementById("counter");
+const parentWidth = canvas.parentElement.clientWidth
+let testingNumber = "444222";
+let numberLength = testingNumber.toString().length;
+canvas.width = numberLength * (65 + 30);
+console.log(canvas.width);
+
+
+const spacing = 80;
+
+for (let i = 0; i < numberLength; i++) {
+  const x = 0 + i * spacing;
+  const y = 0;
+  displays.push(new SevenSegmentDisplay(canvas, x, y, 40, 40, 8));
+}
+
+
+
+for (let i = numberLength - 1; testingNumber > 0; i--) {
+  let digit = testingNumber % 10;
+  
+  displays[i].applyNumber(digit);
+  testingNumber = Math.floor(testingNumber / 10);
+}
+
 setInterval(() => {
   let date = new Date();
   let currentDate = `${date.toDateString()} ${date.toLocaleTimeString()}`;
 
   footerDate.textContent = currentDate;
 }, 1000);
-
-// function validateNumber(value, element) {
-//   if (isNaN(parseInt(value))) {
-//     console.log(parseInt(value));
-//     return { pass: true };
-//   }
-
-//   console.log(parseInt(value), "from me");
-
-//   return {
-//     pass: false,
-//     error: "Field must be a number",
-//   };
-// }
-
-function validateNumber(value, element) {
-  if (/^\d+$/g.test(value)) {
-    return { pass: true };
-  }
-  console.log(/^\d+$/g.test(value), 'from regex');
-  
-  return {
-    pass: false,
-    error: "Field must be a number",
-  };
-}
-
-
-const contactFormValidator = new FormValidator(".segment-input");
-const segmentFormValidator = new FormValidator(".segment-input");
-
-
-segmentFormValidator.addInputValidation("input", validateNumber);
-
