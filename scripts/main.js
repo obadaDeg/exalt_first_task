@@ -1,5 +1,6 @@
 // import SevenSegmentDisplay from "./SevenSegmentDisplay.js";
 import ProfileDetailsEnum from "./DetailsEnum.js";
+import FormValidator from "./FormValidator.js";
 
 const footerDate = document.querySelector(".current-datetime");
 const action = document.querySelector(".action-button");
@@ -75,7 +76,7 @@ window.addEventListener("load", async () => {
     ".content-card.hobbies ul"
   );
   const profileData = (await getProfileInfo())["userData"];
-  console.log(profileData);
+  // console.log(profileData);
 
   profileTitle.textContent = `Profile Page of ${profileData.firstName} ${profileData.lastName}`;
   profileImg.src =
@@ -145,7 +146,7 @@ setInterval(() => {
 
 // const display = new SevenSegmentDisplay("counter", 0, 0, 40, 40, 8);
 // display.startCounter();
-// const form = document.querySelector('.segment-input')
+const form = document.querySelector('.segment-input')
 // console.log(form);
 // const inputField = form.querySelector('input');
 // console.log(inputField);
@@ -154,6 +155,7 @@ setInterval(() => {
 
 // console.log(errorElement);
 
+const segmentFormValidator = new FormValidator(".segment-input")
 
 
 

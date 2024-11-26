@@ -11,6 +11,7 @@
   --light-color: #fcfcfc;
 
   --primary-text-color: #242424;
+  --const-text-color: #242424;
 
   --font-family: "Roboto", sans-serif;
   --font-size: 1rem;
@@ -146,14 +147,14 @@ body::before {
 }
 
 .contact-form:has(input[required]) label::after,
-.segment-input:has(input) label::after {
+.segment-input:has(input[required]) label::after {
   content: "*";
   color: var(--danger-color);
   padding-left: 1%;
   vertical-align: -25%;
 }
 
-.contact-form input[type="email"],
+.contact-form input,
 .contact-form textarea,
 .segment-input input {
   width: 100%;
@@ -163,12 +164,12 @@ body::before {
   border-radius: 0.5em;
 }
 
-.contact-form input[type="email"]:focus,
+.contact-form input:focus,
 .contact-form textarea:focus,
 .segment-input input:focus {
   outline: none;
   border: var(--border-width) solid var(--secondary-color);
-  color: var(--primary-text-color);
+  color: var(--const-text-color);
   caret-color: var(--secondary-color);
 }
 

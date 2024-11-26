@@ -3,12 +3,32 @@ export default class FormValidator {
     this.form = document.querySelector(selector);
     this.inputsHasErrors = new Set();
 
-    this.form.addEventListner("submit", (e) => {
+    this.form.addEventListener("submit", (e) => {
       e.preventDefault();
+    //   const inputs = Array.from(this.form.querySelectorAll("input"));
+    //   inputs.forEach((input) => input.dispatchEvent(new Event("change")));
 
       if (!this.hasErrors) {
         this.form.submit();
       }
+    });
+
+    this.form.addEventListener("change", () => {
+      const requireInputFields = Array.from(
+        this.form.querySelectorAll("input[required]")
+      );
+      console.log(requireInputFields);
+
+      const submitButton = this.form.querySelector(".action-button");
+      console.log(submitButton.classList);
+
+      requireInputFields.every((element) => {
+        if (element.value == "") return false;
+
+        return true;
+      })
+        ? submitButton.removeAttribute("disabled")
+        : submitButton.setAttribute("disabled", "");
     });
   }
 
@@ -29,14 +49,14 @@ export default class FormValidator {
         errorElement = error || "";
       }
 
-      if(!pass) {
+      if (!pass) {
         this.inputsHasErrors.add(inputField);
       } else {
         this.inputsHasErrors.delete(inputField);
       }
     };
 
-    inputField.addEventListner('change', execute());
+    inputField.addEventListener("change", execute(false));
     execute(true);
   }
 }
