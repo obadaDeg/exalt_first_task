@@ -115,6 +115,43 @@ window.addEventListener("load", async () => {
 });
 
 // Contact form validation
+const submitSegFormBtn = segmentForm.querySelector(".action-button");
+const segFormInputField = segmentForm.querySelector("input");
+const segInputFieldError = segmentForm.querySelector(".error");
+const displays = [];
+const canvas = document.getElementById("counter");
+const parentWidth = canvas.parentElement.clientWidth;
+let testingNumber = "444222";
+let numberLength = testingNumber.toString().length;
+
+
+canvas.width = numberLength * (65 + 30);
+
+segFormInputField.addEventListener("input", () => {
+  const val = segFormInputField.value.trim();
+
+  if (val === "") {
+    segInputFieldError.textContent = "";
+    submitSegFormBtn.setAttribute("disabled", "");
+    return;
+  }
+
+  if (!/^\d+$/.test(val)) {
+    segInputFieldError.textContent = "This field should contain numbers only.";
+    submitSegFormBtn.setAttribute("disabled", "");
+  } else {
+    segInputFieldError.textContent = "";
+    submitSegFormBtn.removeAttribute("disabled");
+  }
+});
+
+submitSegFormBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+
+
+  console.log("Form submitted with:", segFormInputField.value.trim());
+});
 
 // Dark Theme handling
 window.addEventListener("load", () => {
@@ -139,32 +176,8 @@ toggleTheme.addEventListener("click", () => {
   }
 });
 
-
-const displays = [];
-const canvas = document.getElementById("counter");
-const parentWidth = canvas.parentElement.clientWidth
-let testingNumber = "444222";
-let numberLength = testingNumber.toString().length;
-canvas.width = numberLength * (65 + 30);
 console.log(canvas.width);
 
-
-const spacing = 80;
-
-for (let i = 0; i < numberLength; i++) {
-  const x = 0 + i * spacing;
-  const y = 0;
-  displays.push(new SevenSegmentDisplay(canvas, x, y, 40, 40, 8));
-}
-
-
-
-for (let i = numberLength - 1; testingNumber > 0; i--) {
-  let digit = testingNumber % 10;
-  
-  displays[i].applyNumber(digit);
-  testingNumber = Math.floor(testingNumber / 10);
-}
 
 setInterval(() => {
   let date = new Date();
