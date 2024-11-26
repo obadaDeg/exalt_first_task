@@ -142,20 +142,36 @@ setInterval(() => {
   footerDate.textContent = currentDate;
 }, 1000);
 
-// action.removeAttribute('disabled')
+// function validateNumber(value, element) {
+//   if (isNaN(parseInt(value))) {
+//     console.log(parseInt(value));
+//     return { pass: true };
+//   }
 
-// const display = new SevenSegmentDisplay("counter", 0, 0, 40, 40, 8);
-// display.startCounter();
-const form = document.querySelector('.segment-input')
-// console.log(form);
-// const inputField = form.querySelector('input');
-// console.log(inputField);
+//   console.log(parseInt(value), "from me");
 
-// const errorElement = inputField.closest('.input').querySelector('.error');
+//   return {
+//     pass: false,
+//     error: "Field must be a number",
+//   };
+// }
 
-// console.log(errorElement);
+function validateNumber(value, element) {
+  if (/^\d+$/g.test(value)) {
+    return { pass: true };
+  }
+  console.log(/^\d+$/g.test(value), 'from regex');
+  
+  return {
+    pass: false,
+    error: "Field must be a number",
+  };
+}
 
-const segmentFormValidator = new FormValidator(".segment-input")
+
+const contactFormValidator = new FormValidator(".segment-input");
+const segmentFormValidator = new FormValidator(".segment-input");
 
 
+segmentFormValidator.addInputValidation("input", validateNumber);
 

@@ -5,9 +5,11 @@ export default class FormValidator {
 
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
+
     //   const inputs = Array.from(this.form.querySelectorAll("input"));
     //   inputs.forEach((input) => input.dispatchEvent(new Event("change")));
 
+    //   this.inputsHasErrors.add("for testing");
       if (!this.hasErrors) {
         this.form.submit();
       }
@@ -17,10 +19,8 @@ export default class FormValidator {
       const requireInputFields = Array.from(
         this.form.querySelectorAll("input[required]")
       );
-      console.log(requireInputFields);
 
       const submitButton = this.form.querySelector(".action-button");
-      console.log(submitButton.classList);
 
       requireInputFields.every((element) => {
         if (element.value == "") return false;
@@ -38,15 +38,17 @@ export default class FormValidator {
 
   addInputValidation(selector, checkFunction) {
     const inputField = this.form.querySelector(selector);
-    const errorElement = this.inputField
-      .closest(".input")
-      .querySelector(".error");
+    const errorElement = inputField.closest(".input").querySelector(".error");
 
     const execute = (hideError) => {
       const { pass, error } = checkFunction(inputField.value, inputField);
 
+      console.log(checkFunction);
+      console.log(pass, error);
+      
+      
       if (!hideError) {
-        errorElement = error || "";
+        errorElement.textContent = error || "";
       }
 
       if (!pass) {
