@@ -120,37 +120,63 @@ const segFormInputField = segmentForm.querySelector("input");
 const segInputFieldError = segmentForm.querySelector(".error");
 const displays = [];
 const canvas = document.getElementById("counter");
+canvas.style.display = "none";
 const parentWidth = canvas.parentElement.clientWidth;
 let testingNumber = "444222";
 let numberLength = testingNumber.toString().length;
-
 
 canvas.width = numberLength * (65 + 30);
 
 segFormInputField.addEventListener("input", () => {
   const val = segFormInputField.value.trim();
 
+  segInputFieldError.textContent = "";
+  submitSegFormBtn.setAttribute("disabled", "");
+  
   if (val === "") {
     segInputFieldError.textContent = "";
-    submitSegFormBtn.setAttribute("disabled", "");
+    canvas.style.display = "none";
     return;
   }
 
   if (!/^\d+$/.test(val)) {
     segInputFieldError.textContent = "This field should contain numbers only.";
-    submitSegFormBtn.setAttribute("disabled", "");
-  } else {
-    segInputFieldError.textContent = "";
-    submitSegFormBtn.removeAttribute("disabled");
+    return;
   }
+
+  if (val.length > 3) {
+    segInputFieldError.textContent = "This field should contain 3 digits only.";
+    return;
+  }
+
+
+  submitSegFormBtn.removeAttribute("disabled");
 });
 
 submitSegFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
+  const inputValue = segFormInputField.value.trim();
+  const numberLength = inputValue.length;
 
+  canvas.width = numberLength * (65 + 40);
 
-  console.log("Form submitted with:", segFormInputField.value.trim());
+  displays.length = 0;
+
+  canvas.style.display = "block";
+
+  for (let i = 0; i < numberLength; i++) {
+    const x = 0 + i * (65 + 20);
+    const y = 0;
+    displays.push(new SevenSegmentDisplay(canvas, x, y, 40, 40, 8));
+  }
+
+  for (let i = 0; i < numberLength; i++) {
+    const digit = parseInt(inputValue[i], 10);
+    displays[i].applyNumber(digit);
+  }
+
+  console.log("Form submitted with:", inputValue);
 });
 
 // Dark Theme handling
@@ -177,7 +203,6 @@ toggleTheme.addEventListener("click", () => {
 });
 
 console.log(canvas.width);
-
 
 setInterval(() => {
   let date = new Date();
