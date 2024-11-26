@@ -71,7 +71,9 @@ window.addEventListener("load", async () => {
   const profileImg = document.querySelector(".profile-picture img");
   const profileDetails = document.querySelector(".about-me .details-container");
   const profileSkillsSection = document.querySelector(".skills ul");
-  const profileHobbiesSection = document.querySelector(".content-card.hobbies ul");
+  const profileHobbiesSection = document.querySelector(
+    ".content-card.hobbies ul"
+  );
   const profileData = (await getProfileInfo())["userData"];
   console.log(profileData);
 
@@ -143,3 +145,15 @@ setInterval(() => {
 
 // const display = new SevenSegmentDisplay("counter", 0, 0, 40, 40, 8);
 // display.startCounter();
+// const form = document.querySelector('.segment-input')
+// console.log(form);
+// const inputField = form.querySelector('input');
+// console.log(inputField);
+
+// const errorElement = inputField.closest('.input').querySelector('.error');
+
+// console.log(errorElement);
+
+
+
+
