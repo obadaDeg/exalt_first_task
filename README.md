@@ -8,7 +8,7 @@ A task requires to build a profile page which support the following skills and f
 4. Functional Contact form.
 5. Simulation for fetching profile from a server. (JSON server were used).
 6. User input for displaying specific 3 digit number on a 7 segment.
- - This Feature used Canvas for drawing 7-Segment displays and bit manipulation in order to decide which segment should be opend
+ - This Feature used Canvas for drawing 7-Segment displays and bit manipulation in order to decide which segment should be on and off.
 7. Real-time Date and Time viewer in the footer of the Page.
 8. Integration with EmailJS to make the functionality of Contact Me Section.
 
