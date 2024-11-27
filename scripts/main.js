@@ -1,5 +1,8 @@
 import SevenSegmentDisplay from "./SevenSegmentDisplay.js";
 import ProfileDetailsEnum from "./DetailsEnum.js";
+// import emailjs from "@emailjs/browser";
+// import Swal from "sweetalert2";
+
 // import FormValidator from "./FormValidator.js";
 
 const footerDate = document.querySelector(".current-datetime");
@@ -138,18 +141,19 @@ emailInputField.addEventListener("change", (e) => {
     return;
   }
 
-  if (!/\w.+@\w+.\w+/ig.test(email)) {
+  if (!/\w.+@\w+.\w+/gi.test(email)) {
     emailInputFieldError.textContent = "Invalid Email";
     return;
   }
 
-  if (/^([0-9\W])\w.+@\w+.\w+/ig.test(email)) {
+  if (/^([0-9\W])\w.+@\w+.\w+/gi.test(email)) {
     emailInputFieldError.textContent = "Email can't start with a number";
     return;
   }
 
   if (!/\.\b(com|org|net)\b$/.test(email)) {
-    emailInputFieldError.textContent = "Email should end with .com, .org, or .net";
+    emailInputFieldError.textContent =
+      "Email should end with .com, .org, or .net";
     return;
   }
 
@@ -188,8 +192,38 @@ msgInputField.addEventListener("change", (e) => {
   console.log(email, msg);
 });
 
+emailjs.init("9eJsxBT1o7gU5LZ5p");
+
 submitcontactFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  let email = emailInputField.value.trim();
+  let msg = msgInputField.value.trim();
+
+  let params = {
+    email: email,
+    message: msg,
+  };
+
+  emailjs
+    .send("service_p6pcnjf", "template_274pu3e", params)
+    .then((response) => {
+      Swal.fire({
+        title: 'Email Sent Successfully',
+        icon: 'success',
+      })
+
+      emailInputField.value = "";
+      msgInputField.value = "";
+      console.log("Email sent successfully!", response.status, response.text);
+    })
+    .catch((error) => {
+      Swal.fire({
+        title: 'Failed To Send Email',
+        icon: 'error',
+      })
+      console.log(error);
+      
+    });
 });
 
 // Segment form validation
