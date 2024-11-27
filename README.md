@@ -14,8 +14,12 @@ A task requires to build a profile page which support the following skills and f
 # How to run the project.
 
 You need to install JSON server in order to fetch the data from the server.
-`npm install json-server`
+```shell
+npm install json-server
+```
 
 Now the json-server is installed you can run it using this command: 
-`npx json-server .\assets\dummy_data\users.json`
+```shell
+npx json-server .\assets\dummy_data\users.json
+```
 
