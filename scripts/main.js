@@ -115,6 +115,84 @@ window.addEventListener("load", async () => {
 });
 
 // Contact form validation
+
+const submitcontactFormBtn = contactForm.querySelector(".action-button");
+const emailInputField = contactForm.querySelector("#email");
+const emailInputFieldError = emailInputField
+  .closest(".input")
+  .querySelector(".error");
+const msgInputField = contactForm.querySelector("#message");
+const msgInputFieldError = msgInputField
+  .closest(".input")
+  .querySelector(".error");
+
+emailInputField.addEventListener("change", (e) => {
+  let email = emailInputField.value.trim();
+  let msg = msgInputField.value.trim();
+
+  emailInputFieldError.textContent = "";
+  submitcontactFormBtn.setAttribute("disabled", "");
+
+  if (email === "") {
+    emailInputFieldError.textContent = "";
+    return;
+  }
+
+  if (!/\w.+@\w+.\w+/ig.test(email)) {
+    emailInputFieldError.textContent = "Invalid Email";
+    return;
+  }
+
+  if (/^([0-9\W])\w.+@\w+.\w+/ig.test(email)) {
+    emailInputFieldError.textContent = "Email can't start with a number";
+    return;
+  }
+
+  if (!/\.\b(com|org|net)\b$/.test(email)) {
+    emailInputFieldError.textContent = "Email should end with .com, .org, or .net";
+    return;
+  }
+
+  if (!msg || !email) {
+    return;
+  }
+
+  submitcontactFormBtn.removeAttribute("disabled");
+  console.log(email, msg);
+});
+
+msgInputField.addEventListener("change", (e) => {
+  let email = emailInputField.value.trim();
+  let msg = msgInputField.value.trim();
+
+  msgInputFieldError.textContent = "";
+  submitcontactFormBtn.setAttribute("disabled", "");
+
+  if (msg === "") {
+    msgInputFieldError.textContent = "";
+    return;
+  }
+
+  console.log(msg.split(" "));
+
+  if (msg.split(" ").length < 5) {
+    msgInputFieldError.textContent =
+      "The message is too short, Please Add More details";
+  }
+
+  if (!msg || !email) {
+    return;
+  }
+
+  submitcontactFormBtn.removeAttribute("disabled");
+  console.log(email, msg);
+});
+
+submitcontactFormBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+});
+
+// Segment form validation
 const submitSegFormBtn = segmentForm.querySelector(".action-button");
 const segFormInputField = segmentForm.querySelector("input");
 const segInputFieldError = segmentForm.querySelector(".error");
@@ -132,7 +210,7 @@ segFormInputField.addEventListener("input", () => {
 
   segInputFieldError.textContent = "";
   submitSegFormBtn.setAttribute("disabled", "");
-  
+
   if (val === "") {
     segInputFieldError.textContent = "";
     canvas.style.display = "none";
@@ -148,7 +226,6 @@ segFormInputField.addEventListener("input", () => {
     segInputFieldError.textContent = "This field should contain 3 digits only.";
     return;
   }
-
 
   submitSegFormBtn.removeAttribute("disabled");
 });
