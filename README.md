@@ -26,4 +26,6 @@ npx json-server .\assets\dummy_data\users.json
 
 # Contact Me Section
 
-Sending an Email will send me 
+Sending an Email will send me the email, therefore you need to connect your own EmailJS key. Anyway here's a demo of how the email will be recived.
+
+![screenshot_of_email](./assets/images/email_sent.png)
