@@ -202,6 +202,7 @@ submitcontactFormBtn.addEventListener("click", (e) => {
   let params = {
     email: email,
     message: msg,
+    reply_to: email
   };
 
   emailjs
